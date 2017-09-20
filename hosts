@@ -1,0 +1,4 @@
+[web]
+192.168.1.53 ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=369874125
+[database]
+192.168.1.53 ansible_ssh_user=root ansible_ssh_pass=369874125

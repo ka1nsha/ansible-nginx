@@ -1,0 +1,12 @@
+---
+- name: Create a Web Server and ETC
+  hosts: web
+  become: yes
+  become_user: root
+  remote_user: root
+  vars_files:
+    - vars/main.yml
+  roles:
+    - base
+    - web
+    - nginx

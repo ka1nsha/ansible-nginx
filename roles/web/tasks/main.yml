@@ -1,0 +1,6 @@
+---
+    - name: Add Group for Nginx
+      group: name={{ nginx_group }} state=present
+
+    - name : Add User for Nginx
+      user: name={{ nginx_user }}

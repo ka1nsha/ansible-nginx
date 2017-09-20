@@ -1,0 +1,24 @@
+---
+- name: Nginx Installing on RPM Repo
+  yum: name=http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+
+- name: Install Nginx
+  yum: name=nginx state=latest
+
+- name: Create Nginx Conf Folders
+  file: path=/etc/nginx/{{ item }} state=directory owner= {{ nginx_user }} group={{ nginx_user }} mode=755
+  with_items:
+    - sites-avaliable
+    - sites-enable
+
+- name: Copy Nginx Configuration
+  template: src=nginxconf.j2 dest=/etc/nginx/conf.d/nginx.conf
+
+- name: Firewall Rules
+  command: firewall-cmd --permanent --zone=public --add-service={{ item }}
+  with_items:
+    - http
+    - https
+  notify:
+    - restart firewall
+    - restart nginx

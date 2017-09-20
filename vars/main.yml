@@ -1,0 +1,5 @@
+---
+    # Nginx
+    project_domain: 0x656e.com
+    nginx_group: webapps
+    nginx_user: project
